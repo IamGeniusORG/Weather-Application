@@ -1,0 +1,544 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #ffffff;
+  --bg-start: #0f172a;
+  --bg-end: #1e293b;
+  --sidebar-bg: rgba(15, 23, 42, 0.6);
+  --card-bg: rgba(255, 255, 255, 0.06);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent: #3b82f6;
+  --accent-glow: rgba(59, 130, 246, 0.5);
+  --danger: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  color: var(--text-primary);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Dashboard Layout */
+.app-dashboard {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100vh;
+  width: 100vw;
+  transition: background 1s ease;
+}
+
+@media (min-width: 1024px) {
+  .app-dashboard {
+    grid-template-columns: 380px 1fr;
+  }
+}
+
+/* --- Sidebar --- */
+.sidebar {
+  background: var(--sidebar-bg);
+  backdrop-filter: blur(30px);
+  border-right: 1px solid var(--card-border);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.search-section {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.search-container {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  color: var(--text-secondary);
+  width: 20px;
+  height: 20px;
+}
+
+.search-input {
+  width: 100%;
+  height: 52px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 0 20px 0 48px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.location-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-primary);
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.location-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Recent Searches */
+.recent-searches {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.recent-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.recent-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.recent-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--card-border);
+  color: var(--text-primary);
+  padding: 6px 6px 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.recent-chip:hover {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.5);
+  color: white;
+}
+
+.delete-chip-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 2px;
+  transition: all 0.2s ease;
+}
+
+.delete-chip-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--danger);
+}
+
+.recent-chip.removing {
+  animation: popOut 0.3s ease forwards;
+}
+
+@keyframes popOut {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.8); opacity: 0; }
+}
+
+/* Hero */
+.current-weather-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 40px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.weather-icon-huge {
+  width: 140px;
+  height: 140px;
+  margin-bottom: 24px;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
+  animation: float 6s ease-in-out infinite;
+}
+
+.temp-huge {
+  font-size: 100px;
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -3px;
+  margin-bottom: 12px;
+  background: linear-gradient(to bottom right, #ffffff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.condition-text {
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  text-transform: capitalize;
+}
+
+.location-text {
+  font-size: 18px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.date-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--card-border);
+  margin-bottom: 30px;
+}
+
+.date-text {
+  font-size: 16px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* --- Main Content --- */
+.main-content {
+  padding: 40px 60px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+/* Hourly Forecast Cards (Recharts wrapper) */
+.chart-container {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 32px;
+  padding: 30px;
+  height: 300px;
+  width: 100%;
+  animation: slideIn 0.6s ease-out;
+}
+
+/* Today's Highlights Grid */
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.highlight-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 28px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.highlight-header {
+  color: var(--text-secondary);
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.highlight-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.highlight-value {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.highlight-unit {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.highlight-icon-wrapper {
+  color: var(--accent);
+  background: rgba(59, 130, 246, 0.1);
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sun-times {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.sun-time-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sun-time-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.sun-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.sun-val {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* 7-Day Forecast Grid */
+.week-forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 16px;
+}
+
+.week-day-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.week-day-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+}
+
+.week-day-card.selected {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: var(--accent);
+  box-shadow: 0 10px 20px -10px var(--accent-glow);
+  transform: translateY(-4px);
+}
+
+.week-day-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.week-day-card.selected .week-day-name {
+  color: var(--text-primary);
+}
+
+.week-day-icon {
+  margin: 8px 0;
+}
+
+.week-day-temps {
+  display: flex;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.week-day-max {
+  color: var(--text-primary);
+}
+
+.week-day-min {
+  color: var(--text-secondary);
+}
+
+/* Loaders and Errors */
+.full-center {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-start);
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-left-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 24px;
+}
+
+.error-text {
+  font-size: 20px;
+  color: var(--text-secondary);
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.retry-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.retry-btn:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px var(--accent-glow);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Custom Recharts Tooltip */
+.custom-tooltip {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(10px);
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: var(--text-primary);
+}
+
+.custom-tooltip .label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.custom-tooltip .temp {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Smart Toast Notification */
+.toast-notification {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  color: var(--text-primary);
+  padding: 16px 24px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1000;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+  font-weight: 500;
+  animation: slideUpToast 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, fadeOutToast 0.4s ease 3s forwards;
+}
+
+@keyframes slideUpToast {
+  from { transform: translateY(50px) scale(0.9); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes fadeOutToast {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(20px) scale(0.9); visibility: hidden; }
+}
