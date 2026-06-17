@@ -1,5 +1,12 @@
 # 🌤️ Modern Weather Dashboard
 
+### 🎥 Live Demonstration
+*In this video, I thoroughly test the application locally, demonstrating the real-time weather fetching, seamless global search functionality, the interactive 24-hour chart, and the dynamic transition between day and night themes based on live data.*
+
+**[⬇️ Click Here to Download / Watch the Testing Video](https://github.com/IamGeniusORG/Weather-Application/raw/main/Testing/weather%20application%20testing%20locally.mp4)**
+
+---
+
 A premium, fully-responsive weather application built with **React** and **Vite**. This project focuses on high-performance data fetching, beautiful UI/UX design, and accurate global weather forecasting.
 
 ## ✨ Features
@@ -39,12 +46,6 @@ A premium, fully-responsive weather application built with **React** and **Vite*
    ```bash
    npm run dev
    ```
-
-## 🎥 Live Demonstration
-
-*In this video, I thoroughly test the application locally, demonstrating the real-time weather fetching, seamless global search functionality, the interactive 24-hour chart, and the dynamic transition between day and night themes based on live data.*
-
-**[📥 Click here to watch or download the Local Testing Video](./Testing/weather%20application%20testing%20locally.mp4)**
 
 ## 🔒 Privacy & Security
 This application prioritizes user privacy. It does not utilize personal tracking, and does not require or store any sensitive API keys. Location memory is stored purely locally in your browser's storage and can be easily cleared.
